@@ -3,8 +3,8 @@
 
 ## Screenshots
 >
-#### Normal:
-
+#### Normal Mode:
+![image](https://cloud.githubusercontent.com/assets/5303018/19415236/174e4be6-9338-11e6-9899-35061b2e3540.png)
 
 ## Usage
 >
@@ -37,6 +37,7 @@ Key Code         | Usage
 `→`,`D`,`num6`   | Turn Right
 `↑`,`W`,`num8`   | Turn Up
 `↓`,`S`,`num5`   | Turn Down
+`space`,`l`,`z`,`ctrl` | Laser Beam
 `+`              | Speed Up Game [*Experimental*]
 `-`              | Slow Down Game [*Experimental*]
 `p`              | Pause Game [**NOT_IMPLEMENTED**]
