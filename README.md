@@ -1,6 +1,11 @@
 # SnakeMadNess
 > Snake game written in PowerShell which uses any windows console {`cmd.exe`, `powershell.exe`} and draws out a custom native code based game. Useful and fun game for aspiring programmers and techies.
 
+## Screenshots
+>
+#### Normal:
+
+
 ## Usage
 >
 ```PowerShell
@@ -13,12 +18,15 @@
 
 ## Features
 >
-- Compiles AP-Programs Independent of the AP-Modules file
-- Reads And Calculates all the Modules needed!
-- Adds code with comment in a neat BASE64 Code
-- Has a blacklisting system
-- Code layout detection
-- Inject Point Detection
+- In house Game Engine, and View overlay + Grid System
+- Color Scheming
+- Level Making
+- MAP Saving and Loading
+- Obstruction Creation
+- Laser Beams To cut through walls
+- Warping of Obstructions and Snake
+- Game-Console with Laser and Score count
+- CPU cycle and sleep time adjustment as game progresses
 
 ## Commands
 > 
