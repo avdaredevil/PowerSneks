@@ -15,7 +15,7 @@
 - `Trail` mode is for debugging to see where the snake has been throughout the duration of the game
 - `LoadDefaultSave` loads game from a previous save [File: `AP-Snakes.Map.Save`]
 - `MapFile` is the save-file path you want to load the game from
-- *__Note__: If you've never run PowerShell Scripts before refer to **Setup PowerShell Section** Below*
+- *__Note__: If you've never run PowerShell Scripts before refer to __Setup PowerShell Section__ Below*
 
 ## Features
 >
