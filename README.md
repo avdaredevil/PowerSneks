@@ -50,4 +50,7 @@ Key Code         | Usage
 ## Set Up PowerShell [If you've never run a script in PowerShell]
 > - Open PowerShell with Admin Access
 - Run `Set-ExecutionPolicy Bypass`
+- This allows scripts to be run in PowerShell
+- cd to the *Folder* where you downloaded/cloned [AP-Snakes.ps1](AP-Snakes.ps1)
+- `./Ap-Snakes.ps1`*`<arguments>`*
 
