@@ -1,4 +1,4 @@
-<#
+﻿<#
 |===============================================================>|
    AP-Snakes [SnakeMadNess] by APoorv Verma [AP] on 10/15/2013
 |===============================================================>|
@@ -34,7 +34,7 @@ $TitleBkp         = [Console]::Title
 $BkColBkp         = [Console]::BackGroundColor
 $SaveFile         = "$(split-path $PSCommandPath)\AP-Snakes.Map.Save"
 $FoodCol          = "Yellow"
-$FoodIcon         = "?"
+$FoodIcon         = "♣"
 $SnakeStartSz     = 5
 $SnakeCol         = "DarkGreen"
 $SnaketCol        = "Red"
@@ -90,9 +90,9 @@ $WFill = @()
 "Left","Right" | % {$Wall[2].$_   = $Win[1]-1}
 "Top","Bottom" | % {$Wall[3].$_   = $Win[0]-1}
 "Top","Bottom" | % {$ScoreBoard.$_= $Win[0]}
-0,2 | % {$WFill[$_].Character = "?"} #475
-$WFill[1].Character = "?"
-$WFill[3].Character = "?"
+0,2 | % {$WFill[$_].Character = "█"} #475
+$WFill[1].Character = "▀"
+$WFill[3].Character = "▄"
 # -------------
 0..3 | % {$WFill[$_].ForegroundColor = $WallCol;$WFill[$_].BackgroundColor = $BkCol}
 # -------------
@@ -111,7 +111,7 @@ function Game-Console ([String]$Text = "SnakeMADness By Apoorv Verma") {
     [Console]::CursorTop  = $ScoreBoard.Top
     [Console]::CursorLeft = $ScoreBoard.Left
     $Host.UI.RawUI.SetBufferContents($ScoreBoard,$SBFiller)
-    $LaserText = " Lasers : $(if ($LaserCnt -eq -100) {'?'} else {$Script:LaserCnt}) "
+    $LaserText = " Lasers : $(if ($LaserCnt -eq -100) {'∞'} else {$Script:LaserCnt}) "
     $OffSetS = -1-" SCORE : $Score".Length
     $OffSetL = -1-$LaserText.Length
     $OffSet  = $OffSetS+$OffsetL
@@ -323,7 +323,7 @@ function Laser-Beam ($Directn, $Pos){
         foreach ($p in $Set){
             if ($GRID[$pos[0]][$p] -eq $WallMap){
                 $GRID[$pos[0]][$p] = $SpaceMap
-                0..1 | % {WriteTO-Pos (?:($_%2 -eq 0){"?"}{" "}) -y $pos[0] -x $p -fgc "yellow";start-sleep -m (?:($_%2 -eq 0){$SoJa}{0})}
+                0..1 | % {WriteTO-Pos (?:($_%2 -eq 0){"█"}{" "}) -y $pos[0] -x $p -fgc "yellow";start-sleep -m (?:($_%2 -eq 0){$SoJa}{0})}
             }
         }
     } else {
@@ -332,7 +332,7 @@ function Laser-Beam ($Directn, $Pos){
         foreach ($p in $Set){
             if ($GRID[$p][$pos[1]] -eq $WallMap){
                 $GRID[$p][$pos[1]] = $SpaceMap
-                0..1 | % {WriteTO-Pos (?:($_%2 -eq 0){"?"}{" "}) -y $p -x $pos[1] -fgc "yellow";start-sleep -m (?:($_%2 -eq 0){$SoJa}{0})}
+                0..1 | % {WriteTO-Pos (?:($_%2 -eq 0){"█"}{" "}) -y $p -x $pos[1] -fgc "yellow";start-sleep -m (?:($_%2 -eq 0){$SoJa}{0})}
             }
         }
     }
