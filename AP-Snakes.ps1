@@ -162,7 +162,7 @@ function Keys-Check {
         ElseIf (KeyPressed "+"  $Store) {$SleepAdj -= 2}
         ElseIf (KeyPressed "~~space~~","L","Z","~~Control~~"  $Store) {. Laser-Beam $SCRIPT:Direction $SCRIPT:SnakePos}
         ElseIf (KeyPressed "p"  $Store) {Pause-Screen}
-        ElseIf (KeyPressed "0" $Store) {. Digest-Food}
+        ElseIf (KeyPressed "0s" $Store) {. Digest-Food}
         ElseIf (KeyPressed "123" $Store) {Game-Console "Loading Full Screen";cmd /c start /max cmd /k "mode con cols=239 lines=84&powershell -ep bypass $PSCommandPath";QUIT}
         ElseIf (KeyPressed "~~Tab~~" $Store) {Game-Console ". . . Saving Game State . . .";Save-State;Game-Console ". . . Saved Game State . . ."}
         ElseIf (KeyPressed "116" $Store) {f5}
