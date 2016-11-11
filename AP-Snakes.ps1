@@ -340,7 +340,7 @@ function Laser-Beam ($Directn, $Pos){
     Game-Console
 }
 function Save-State ($File=$SaveFile) {
-    attrib +h -r $File 2>&1 | Out-Null
+    attrib -h -r -s +a $File 2>&1 | Out-Null
     "This is a Save File from SnakeMADness by Apoorv Verma [AP]
     Copyright 2015 All Rights Reserved
     AP|--------------------------------->
@@ -350,7 +350,7 @@ function Save-State ($File=$SaveFile) {
         >>SnakeSize.= $($Script:SnakeLook.count)
     AP|--------------------------------->" | % {$_.replace((" "*4),"").replace(">>",(" "*4))} | out-file -Encoding ascii $File
     $Grid | % {$_ -join("")} | Out-File -Append -Encoding ascii $File
-    attrib +h +r $File 2>&1 | Out-Null
+    attrib +h +r +s -a $File 2>&1 | Out-Null
 }
 function Load-Map ($Mapper) {
     $GRID_s = @()
