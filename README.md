@@ -52,7 +52,7 @@ Key Code         | Usage
 `f12`            | Full Screen
 `Tab`            | Save Current Game State
 `f5`             | Refresh view [*fast*]
-`\``             | Enable dev console on game (also enable-able via the `-debug` cmdline flag)
+`~`              | Enable dev console on game (also enable-able via the `-debug` cmdline flag)
 `0`              | Add more food to the game [**Cheat Code**]
 
 ## Set Up PowerShell [If you've never run a script in PowerShell]
