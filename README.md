@@ -45,7 +45,8 @@ Key Code         | Usage
 `←`   , `→`   , `↑`   , `↓`    | Move Snake (left/right/up/down) (Player 1)
 `A`   , `D`   , `W`   , `S`    | Move Snake (left/right/up/down) (Player 2)
 `num4`, `num6`, `num8`, `num5` | Move Snake (left/right/up/down) (Player 3)
-`space`,`l`,`z`,`ctrl` | Laser Beam (disabled in multiplayer)
+`space`,`z`      | Laser Beam (Player 1)
+`ctrl`,`l`       | Laser Beam (Player 2)
 `+`              | Speed Up Game [*Increases Tick speed*]
 `-`              | Slow Down Game [*Increases Tick speed*]
 `p`              | Pause Game
