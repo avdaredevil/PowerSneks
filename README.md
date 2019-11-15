@@ -19,11 +19,11 @@ Standard Single Player | Multiplater (w/ Debug Console)
 
 ## Usage
 ```PowerShell
-.\AP-Snakes.ps1 [[-MapFile] <string>] [-Trail] [-LoadDefaultSave]
+.\PowerSneks.ps1 [[-MapFile] <string>] [-Trail] [-LoadDefaultSave]
 ```
 - Will draw a game to match the dimensions of the console window
 - `Trail` mode is for debugging to see where the snake has been throughout the duration of the game
-- `LoadDefaultSave` loads game from a previous save [File: `AP-Snakes.Map.Save`]
+- `LoadDefaultSave` loads game from a previous save [File: `%appdata%\AP-PowerSneks.Map.Save`]
 - `MapFile` is the save-file path you want to load the game from
 - *__Note__: If you've never run PowerShell Scripts before refer to __Setup PowerShell Section__ Below*
 
@@ -45,7 +45,7 @@ Key Code         | Usage
 `←`   , `→`   , `↑`   , `↓`    | Move Snake (left/right/up/down) (Player 1)
 `A`   , `D`   , `W`   , `S`    | Move Snake (left/right/up/down) (Player 2)
 `num4`, `num6`, `num8`, `num5` | Move Snake (left/right/up/down) (Player 3)
-`space`,`l`,`z`,`ctrl` | Laser Beam
+`space`,`l`,`z`,`ctrl` | Laser Beam (disabled in multiplayer)
 `+`              | Speed Up Game [*Increases Tick speed*]
 `-`              | Slow Down Game [*Increases Tick speed*]
 `p`              | Pause Game
