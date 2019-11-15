@@ -68,7 +68,7 @@ class SnakeBot : Snake {
             if ($G.Grid[$y][$x] -ne $(gv SymbolMap | % Value).Wall) {if ($this.NavigateToFood($GoodDir)) {break A}}
             
             # We need to turn
-            if (!$GoodDir.length) {$G.shootLaser();break} # No option but to laser
+            if (!$GoodDir.length) {$G.shootLaser($this);break}             # No option but to laser
             $this.turn($GoodDir[(Get-Random $GoodDir.length)])             # Turn to any valid direction
         } while (0)
         ([Snake]$this).tick()

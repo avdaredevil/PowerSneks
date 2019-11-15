@@ -19,10 +19,11 @@ Standard Single Player | Multiplater (w/ Debug Console)
 
 ## Usage
 ```PowerShell
-.\PowerSneks.ps1 [[-MapFile] <string>] [-Trail] [-LoadDefaultSave]
+.\PowerSneks.ps1 [[-Snakes] <int:1>] [[-Bots] <int:0>] [[-MapFile] <string>] [-LoadDefaultSave] [-ShowPlayerLabels] [-Debug]
 ```
 - Will draw a game to match the dimensions of the console window
-- `Trail` mode is for debugging to see where the snake has been throughout the duration of the game
+- `Snake` is the number of human players (controls cut off after 2 players), `Bots` is the number of bots in the game
+- `Debug` mode is for debugging to see snake positions, object distances, active render, current block, tick
 - `LoadDefaultSave` loads game from a previous save [File: `%appdata%\AP-PowerSneks.Map.Save`]
 - `MapFile` is the save-file path you want to load the game from
 - *__Note__: If you've never run PowerShell Scripts before refer to __Setup PowerShell Section__ Below*
@@ -36,6 +37,7 @@ Standard Single Player | Multiplater (w/ Debug Console)
 - Laser Beams To cut through walls
 - Warping of Obstructions and Snake
 - Game-Console with Laser and Score count
+- Debug console like Minecraft for the game Engine
 - CPU cycle and sleep time adjustment as game progresses
 
 ## Commands

@@ -17,8 +17,9 @@
 |===============================================================>|
 #>
 param(
-    [ValidatePattern("[A-z]?:?.?\\.*\..*|\/\*\\")][String]$MapFile='/*\',
     [int]$Snakes=1,
+    [int]$Bots=0,
+    [ValidatePattern("[A-z]?:?.?\\.*\..*|\/\*\\")][String]$MapFile='/*\',
     [Switch]$LoadDefaultSave,
     [Switch]$Debug,
     [Switch]$ShowPlayerLabels
@@ -26,5 +27,6 @@ param(
 . $PSScriptRoot\PowerSneks_BaseObjects.ps1
 . $PSScriptRoot\PowerSneks_GameSettings.ps1
 . $PSScriptRoot\PowerSneks_Engine.ps1
+. $PSScriptRoot\BotClass.ps1
 #= RUNTIME ====================================================================================|
 Start-Game
