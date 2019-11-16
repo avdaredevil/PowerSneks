@@ -1,12 +1,14 @@
 # Using module .\PowerSneks_Engine.ps1
 class SnakeBot : Snake {
-    [int[][]]$FoodCoords = @()
+    [int]$ScanFreshness = 0
+    [int[][]]$FoodCoords = $null
     SnakeBot([int[]]$Coords, [Game]$Game) : base($Coords, $Game) {}
     incrementScore(){
         ([Snake]$this).incrementScore()
         $this.ScanForFoodCoords()
     }
     ScanForFoodCoords() {
+        $this.ScanFreshness = 10 # How many ticks should I wait before considering this target expired
         $G = $this.Game.Grid
         $Food = $(gv SymbolMap | % Value).Food
         $this.FoodCoords = @()
@@ -21,11 +23,11 @@ class SnakeBot : Snake {
         }
     }
     [int[]] closestFood() {
-        if (!$this.FoodCoords.length) {$this.ScanForFoodCoords()}
+        if (!$this.FoodCoords -or !$this.FoodCoords.length) {$this.ScanForFoodCoords()}
         $c = $this.FoodCoords | % {
             $x, $y = $_
             [PSCustomObject]@{x=$x;y=$y;d=([Game]::CoordsDistance($_, $this.Head))}
-        } | sort d | select -f 1 | % {$x,$y}
+        } | sort d | select -f 1 | % {$_.x,$_.y}
         return $c
     }
     [boolean]NavigateToFood([Direction[]]$GoodDir) {
@@ -37,6 +39,7 @@ class SnakeBot : Snake {
         $cdir = $this.BodyDirection
         $x, $y = $this.Head
         $fx, $fy = $this.closestFood()
+        # Write-ToPos $(gv CharMap | % Value).Symbol.Food -y $fy -x $fx -fgc $(gv ColorMap | % Value).Food -bgc ($this.Id+1) 
         Place-BufferedContent ("X: {0,3} -> {1,3}" -f ($x, $fx)) 2 2
         Place-BufferedContent ("Y: {0,3} -> {1,3}" -f ($y, $fy)) 2 3
         if (($cdir -eq [Direction]::Left -or $cdir -eq [Direction]::Right) -and $fy -ne $y) {
@@ -48,6 +51,8 @@ class SnakeBot : Snake {
     tick() {
         $G = $this.Game
         [Direction[]]$GoodDir = @()
+
+        if (--$this.ScanFreshness -le 0) {$this.ScanForFoodCoords()}
         
         :A do {
             $BodyHash = @{}
