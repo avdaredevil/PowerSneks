@@ -2,6 +2,7 @@
 class SnakeBot : Snake {
     [int]$ScanFreshness = 0
     [int[][]]$FoodCoords = $null
+    [String]$Class = 'SnakeBot'
     SnakeBot([int[]]$Coords, [Game]$Game) : base($Coords, $Game) {}
     incrementScore(){
         ([Snake]$this).incrementScore()
@@ -60,7 +61,7 @@ class SnakeBot : Snake {
                 $BodyHash."$c" = 1
             }
             foreach ($dir in (0..3)) {
-                if ($dir -eq [int](($this.BodyDirection+2)%4)) {continue}
+                if ($this.size -gt 1 -and $dir -eq [int](($this.BodyDirection+2)%4)) {continue}
                 $x, $y = [Game]::WarpCoords((Modify-Coord $this.Head[0] $this.Head[1] $dir))
                 if ($G.Grid[$y][$x] -eq $(gv SymbolMap | % Value).Food) {$this.turn($dir);break A}
                 if ($G.Grid[$y][$x] -eq $(gv SymbolMap | % Value).Space -and !$BodyHash."$x $y") {
