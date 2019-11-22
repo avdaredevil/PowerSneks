@@ -41,8 +41,8 @@ class SnakeBot : Snake {
         $x, $y = $this.Head
         $fx, $fy = $this.closestFood()
         # Write-ToPos $(gv CharMap | % Value).Symbol.Food -y $fy -x $fx -fgc $(gv ColorMap | % Value).Food -bgc ($this.Id+1) 
-        Place-BufferedContent ("X: {0,3} -> {1,3}" -f ($x, $fx)) 2 2
-        Place-BufferedContent ("Y: {0,3} -> {1,3}" -f ($y, $fy)) 2 3
+        # Place-BufferedContent ("X: {0,3} -> {1,3}" -f ($x, $fx)) 2 2
+        # Place-BufferedContent ("Y: {0,3} -> {1,3}" -f ($y, $fy)) 2 3
         if (($cdir -eq [Direction]::Left -or $cdir -eq [Direction]::Right) -and $fy -ne $y) {
             return $tryTurn.invoke($(if ($fy -gt $y) {[Direction]::Down} else {[Direction]::Up}))
         }

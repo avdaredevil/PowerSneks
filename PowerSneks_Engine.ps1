@@ -433,7 +433,7 @@ class Game : LiveObject {
     createObstruction() {
         $Coord = @()
         $H, $W = $(gv win | % Value)
-        $tmout = 30 # Since this is tmout x (.5 * H * W) which gets pretty big
+        $tmout = 40 # Since this is tmout x (.5 * H * W) which gets pretty big
         $HDist, $WDist = $H, $W | % {[Math]::Ceiling($(gv GameKnobs | % Value).Obstruction.SnakeDistanceRatio*$_)}
         $ValidatePoint = {param($tx,$ty,$px,$py)
             return (
