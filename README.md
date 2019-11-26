@@ -18,7 +18,7 @@ Standard Single Player | Multiplayer (w/ Debug Console)
 
 Scoreboard during gameplay | 
 --- | 
-![PowerSneks Scoreboard](https://user-images.githubusercontent.com/5303018/69590529-abd2e600-0fa4-11ea-807d-27640f092fc3.png)
+![PowerSneks Scoreboard](https://user-images.githubusercontent.com/5303018/69590755-59de9000-0fa5-11ea-8393-259a8b1d06fb.png)
 
 ## Usage
 ```PowerShell
@@ -60,6 +60,22 @@ Key Code         | Usage
 `f5`             | Refresh view [*fast*]
 `~`              | Enable dev console on game (also enable-able via the `-debug` cmdline flag)
 `0`              | Add more food to the game [**Cheat Code**]
+
+## Files
+#### Game Launchers
+File | Description
+--- | ---
+PowerSneks.ps1 | Main Game launcher, use this to start the game
+_ConvertGame-ToBots.ps1 | Use a saved game and convert all players to bots (*best use for this file, use `-LoadDefaultSave`*)
+
+#### Base Files
+File | Description
+--- | ---
+PowerSneks_BaseObjects.ps1 | Contains enums and base object definitions that the game engine relies on
+PowerSneks_GameSettings.ps1 | Contains all the tinkerable variables that can be modified before launching the game engine
+PowerSneks_Engine.ps1 | Class definition for `Game`, `Snake`, `Player`, `LiveObject`, `Snitch`, etc
+BotClass.ps1 | Contains the class definition for `SnakeBot` (a really dump CPU bot that can kinda play this game)
+Sockets.ps1 | ***TODO**: Add LAN based multiplayer support for the game*
 
 ## Set Up PowerShell [If you've never run a script in PowerShell]
 - Open PowerShell with Admin Access
