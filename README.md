@@ -12,13 +12,13 @@
     - Allows you to Customize `$Script:GameKnobs` to adjust everything from Sleep Times, Obstruction sizes, Render sizes, Colors, Symbols, SaveMaps, Laser Logic, etc
 
 ## Screenshots
-Standard Single Player | Multiplayer (w/ Debug Console)
---- | ---
-![Standard Single Player](https://user-images.githubusercontent.com/5303018/67819656-4fe37300-fa73-11e9-9539-bd7cf05c1f5a.png) | ![Multiplayer (w/ Debug Console)](https://user-images.githubusercontent.com/5303018/67819723-9d5fe000-fa73-11e9-8ade-a39dd99e91b4.png)
+Standard Single Player | Multiplayer (w/ Debug Console) | Scoreboard during gameplay
+--- | --- | ---
+![Standard Single Player](https://user-images.githubusercontent.com/5303018/67819656-4fe37300-fa73-11e9-9539-bd7cf05c1f5a.png) | ![Multiplayer (w/ Debug Console)](https://user-images.githubusercontent.com/5303018/67819723-9d5fe000-fa73-11e9-8ade-a39dd99e91b4.png) | ![PowerSneks Scoreboard](https://user-images.githubusercontent.com/5303018/69590755-59de9000-0fa5-11ea-8393-259a8b1d06fb.png)
 
-Scoreboard during gameplay | 
+Gameplay Gif | 
 --- | 
-![PowerSneks Scoreboard](https://user-images.githubusercontent.com/5303018/69590755-59de9000-0fa5-11ea-8393-259a8b1d06fb.png)
+![PowerSneks Gameplay](./docs/PowerSneks.gif)
 
 ## Usage
 ```PowerShell
@@ -65,17 +65,17 @@ Key Code         | Usage
 #### Game Launchers
 File | Description
 --- | ---
-PowerSneks.ps1 | Main Game launcher, use this to start the game
-_ConvertGame-ToBots.ps1 | Use a saved game and convert all players to bots (*best use for this file, use `-LoadDefaultSave`*)
+`PowerSneks.ps1` | Main Game launcher, use this to start the game
+`ToBots.ps1` | Use a saved game and convert all players to bots (*best use for this file, use `-LoadDefaultSave`*)
 
 #### Base Files
 File | Description
 --- | ---
-PowerSneks_BaseObjects.ps1 | Contains enums and base object definitions that the game engine relies on
-PowerSneks_GameSettings.ps1 | Contains all the tinkerable variables that can be modified before launching the game engine
-PowerSneks_Engine.ps1 | Class definition for `Game`, `Snake`, `Player`, `LiveObject`, `Snitch`, etc
-BotClass.ps1 | Contains the class definition for `SnakeBot` (a really dump CPU bot that can kinda play this game)
-Sockets.ps1 | ***TODO**: Add LAN based multiplayer support for the game*
+`PowerSneks_BaseObjects.ps1` | Contains enums and base object definitions that the game engine relies on
+`PowerSneks_GameSettings.ps1` | Contains all the tinkerable variables that can be modified before launching the game engine
+`PowerSneks_Engine.ps1` | Class definition for `Game`, `Snake`, `Player`, `LiveObject`, `Snitch`, etc
+`BotClass.ps1` | Contains the class definition for `SnakeBot` (a really dump CPU bot that can kinda play this game)
+`Sockets.ps1` | ***TODO**: Add LAN based multiplayer support for the game*
 
 ## Set Up PowerShell [If you've never run a script in PowerShell]
 - Open PowerShell with Admin Access
