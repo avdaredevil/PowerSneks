@@ -12,10 +12,13 @@
     - Allows you to Customize `$Script:GameKnobs` to adjust everything from Sleep Times, Obstruction sizes, Render sizes, Colors, Symbols, SaveMaps, Laser Logic, etc
 
 ## Screenshots
-Standard Single Player | Multiplater (w/ Debug Console)
+Standard Single Player | Multiplayer (w/ Debug Console)
 --- | ---
-![Standard Single Player](https://user-images.githubusercontent.com/5303018/67819656-4fe37300-fa73-11e9-9539-bd7cf05c1f5a.png) | ![Multiplater (w/ Debug Console)](https://user-images.githubusercontent.com/5303018/67819723-9d5fe000-fa73-11e9-8ade-a39dd99e91b4.png)
+![Standard Single Player](https://user-images.githubusercontent.com/5303018/67819656-4fe37300-fa73-11e9-9539-bd7cf05c1f5a.png) | ![Multiplayer (w/ Debug Console)](https://user-images.githubusercontent.com/5303018/67819723-9d5fe000-fa73-11e9-8ade-a39dd99e91b4.png)
 
+Scoreboard during gameplay | 
+--- | 
+![PowerSneks Scoreboard](https://user-images.githubusercontent.com/5303018/69590529-abd2e600-0fa4-11ea-807d-27640f092fc3.png)
 
 ## Usage
 ```PowerShell
