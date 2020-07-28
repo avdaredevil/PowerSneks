@@ -151,7 +151,7 @@ class Game : LiveObject {
         $WFill[1].Character = $Ch.Top
         $WFill[3].Character = $Ch.Bottom
         # -------------
-        0..3 | % {$WFill[$_].ForegroundColor = $(gv ColorMap | % Value).Wall;$WFill[$_].BackgroundColor = $(gv ColorMap | % Value).Game.Background}
+        0..3 | % {$WFill[$_].ForegroundColor = $(gv ColorMap | % Value).Wall;$WFill[$_].BackgroundColor = $(gv ColorMap | % Value).Wall}
         #= BASIC-WALL =============|
         0..3 | % {$Global:Host.UI.RawUI.SetBufferContents($Wall[$_],$WFill[$_])}
         $OWall = $Wall[0,2,3]
@@ -263,7 +263,7 @@ class Game : LiveObject {
             if (!$Store.KeyDown) {Continue}
             
             #Critical Hotkeys
-            If (KeyPressed "q","x","~~Escape~~" $Store) {$this.ScoreBoard.write(". . . QUIT Signal . . .");$this.quit()}
+            If (KeyPressed "~~Escape~~" $Store) {$this.ScoreBoard.write(". . . QUIT Signal . . .");$this.quit()}
             ElseIf (KeyPressed "p"  $Store) {$this.pause()}
             ElseIf (KeyPressed "~~F1~~"  $Store) {$this.ScoreBoard.RenderScores()}
             ElseIf (KeyPressed '`'  $Store) {
@@ -362,7 +362,12 @@ class Game : LiveObject {
         [Console]::Title = $(gv TitleBkp | % Value)
         [Console]::BackGroundColor = $(gv BkColBkp | % Value)
         $Global:Host.UI.RawUI.FlushInputBuffer()
-        [Console]::CursorTop = $(gv win | % Value)[0]+2
+        try {
+            [Console]::CursorTop = $(gv win | % Value)[0]+2
+        } catch {
+            # Fix for windows terminal like emulators
+            Write-Host -NoNewLine ("`n"*($(gv win | % Value)[0]+2))
+        }
         $this.die()
         if ($this.quits_issued -gt 20) {
             $this.ScoreBoard.write('Game cannot quit gracefully, force quitting!')
@@ -536,7 +541,10 @@ class Game : LiveObject {
             if ($y -eq 0) {$Char = $(gv CharMap | % Value).Wall.Top}
             if ($y -eq $(gv win | % Value)[0]-1) {$Char = $(gv CharMap | % Value).Wall.Bottom}
         }
-        Write-ToPos $Char $x $y -fgc $(gv ColorMap | % Value).$Key
+        $Bg = [Console]::BackgroundColor
+        $Fg = $(gv ColorMap | % Value).$Key
+        if ($Key -eq 'Wall') {$Bg = $Fg}
+        Write-ToPos $Char $x $y -f $Fg -b $Bg
     }
     static [bool] CoordsEqual([int[]]$A,[int[]]$B) {
         return $A[0] -eq $B[0] -and $A[1] -eq $B[1]
