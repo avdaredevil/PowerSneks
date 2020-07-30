@@ -76,9 +76,11 @@ class Game : LiveObject {
             try {$this.tick()}
             catch {
                 if ("$_" -eq 'Quit') {$this.ScoreBoard.RenderScores();continue}
-                $this.quit()
-                $this.ScoreBoard.Write('Error: $_')
-                Write-Host ($_ | Out-String)
+                $this.ScoreBoard.Write("Error: $_")
+                Write-Host ("$_" | Out-String)
+                try {
+                    $this.quit()
+                } catch {throw 'Error-State'}
                 continue
             }
             $PixRatio = $(if (!$this.isMultiPlayer() -and $this.Players[0].Direction%2) {$(gv GameKnobs | % Value).Sleep.CursorRatio} else {1})
@@ -227,35 +229,62 @@ class Game : LiveObject {
     }
     ShootLaser($P) {
         if (!($P -is [Player])) {Write-Host 'Object passed is not an instance of Player!' ($P | Out-String);$this.quit();return}
-        #if ($this.isMultiPlayer()) {$this.ScoreBoard.write("Lasers are not permitted in multiplayer!");return}
         if ($P.Lasers -le 0 -and $P.Lasers -ne -100) {$this.ScoreBoard.write("- - - - - - - - P$($P.Id) No More Lasers - - - - - - - -");return}
         if ($P.Lasers -gt 0) {$P.Lasers--}
         $x, $y = $P.Head
-        $Laser = $(gv CharMap | % Value).Laser
+        
+        # Laser Bomb
+        $xRad, $yRad = $(gv GameKnobs | % Value).Laser.BombRadius
+        if ($xRad -gt 0 -and $yRad -gt 0) {
+            try {
+                -$yRad..$yRad | % {
+                    $ny = $y + $_
+                    $eraseX = -$xRad..$xRad | ? {
+                        $nx = $x + $_
+                        $this.laserRemoveBlock($nx, $ny, 1)
+                    }
+                    $eraseX | % {
+                        $nx = $x + $_
+                        $this.laserRemoveBlock($nx, $ny, 2)
+                    }
+                }
+                $P.draw()
+            } catch {
+                Write-Host "-Error$_"
+                sleep 3
+            }
+        }
+
+        # Laser Beam
         if ($P.Direction -in 0,2) {
             $Set = 0..($(gv win | % Value)[1]-1)
             if ($P.Direction -eq 0) {[Array]::Reverse($Set)}
-            foreach ($p in $Set){
-                if ($this.Grid[$y][$p] -eq $(gv SymbolMap | % Value).Wall){
-                    $this.Grid[$y][$p] = $(gv SymbolMap | % Value).Space
-                    Write-ToPos $Laser -y $y -x $p -fgc $(gv ColorMap | % Value).Laser
-                    sleep -m $(gv GameKnobs | % Value).Laser.PrintDelay
-                    $this.RenderPoint($p, $y)
-                }
+            foreach ($p in $Set) {
+                $this.laserRemoveBlock($p, $y)
             }
         } else {
             $Set = 0..($(gv win | % Value)[0]-1)
             if ($P.Direction -eq 1) {[Array]::Reverse($Set)}
             foreach ($p in $Set){
-                if ($this.Grid[$p][$x] -eq $(gv SymbolMap | % Value).Wall){
-                    $this.Grid[$p][$x] = $(gv SymbolMap | % Value).Space
-                    Write-ToPos $Laser -y $p -x $x -fgc $(gv ColorMap | % Value).Laser
-                    sleep -m $(gv GameKnobs | % Value).Laser.PrintDelay
-                    $this.RenderPoint($x, $p)
-                }
+                $this.laserRemoveBlock($x, $p)
             }
         }
         $this.ScoreBoard.write()
+    }
+    [bool]laserRemoveBlock([int]$x, [int]$y) {return $this.laserRemoveBlock($x, $y, 0)}
+    [bool]laserRemoveBlock([int]$x, [int]$y, [int]$Mode) {
+        $x, $y = [Game]::WarpCoords($x, $y)
+        if ($Mode -ne 2 -and $this.Grid[$y][$x] -ne $(gv SymbolMap | % Value).Wall) {return $false}
+        if ($Mode -lt 2) {
+            $Laser = $(gv CharMap | % Value).Laser
+            $this.Grid[$y][$x] = $(gv SymbolMap | % Value).Space
+            Write-ToPos $Laser -y $y -x $x -fgc $(gv ColorMap | % Value).Laser
+        }
+        if ($Mode -ne 1) {
+            sleep -m $(gv GameKnobs | % Value).Laser.PrintDelay
+            $this.RenderPoint($x, $y)
+        }
+        return $true
     }
     readKeys() {
         while ($Global:Host.UI.RawUI.KeyAvailable) {
