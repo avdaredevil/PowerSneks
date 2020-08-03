@@ -24,6 +24,10 @@ param(
     [Switch]$Debug,
     [Switch]$ShowPlayerLabels
 )
+function bool($a) {if($a){"`$true"}else{"`$false"}}
+if ($args[0] -ne "in-frame") {
+    return powershell -ep bypass -noprofile $PSCommandPath "-Snakes:$Snakes -Bots:$Bots -MapFile:$MapFile -LoadDefaultSave:$(bool($LoadDefaultSave)) -Debug:$(bool($Debug)) -ShowPlayerLabels:$(bool($ShowPlayerLabels)) 'in-frame'"
+}
 . $PSScriptRoot\PowerSneks_BaseObjects.ps1
 . $PSScriptRoot\PowerSneks_GameSettings.ps1
 . $PSScriptRoot\PowerSneks_Engine.ps1
