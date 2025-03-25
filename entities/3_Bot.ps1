@@ -1,4 +1,7 @@
-# Using module .\PowerSneks_Engine.ps1
+# using module ../PowerSneks_BaseObjects.ps1
+# using module ./1_Game.ps1
+# using module ./2_Snake.ps1
+
 class SnakeBot : Snake {
     [int]$ScanFreshness = 0
     [int[][]]$FoodCoords = $null
